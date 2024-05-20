@@ -49,7 +49,7 @@ export const PingButton: FC = () => {
 
     const dataV2 = {
 			name: "EnoSuity COIN",
-			symbol: "ENNO",
+			symbol: "ENO",
 			uri: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/2ADKYuqzwQwCKQtDb4fchL4Dxc8QZYcvrvTGGEGD6Ghh/logo.png",
 			// we don't need that
 			sellerFeeBasisPoints: 0,
