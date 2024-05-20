@@ -24,13 +24,15 @@ const Home: NextPage = (props) => {
           <PingButton />
           <div className={styles.notesAtBottom}>
             <b>Note:</b>
+            <br />
             <div>
               <span>1. Click on above button to update metadata of existing token.</span>
+              <br />
               <span>2. Make sure, Wallet must be connected with <i>Mint Authority wallet</i> </span>
             </div>             
           </div>
         </div>
-      </WalletContextProvider >
+      </WalletContextProvider>
     </div>
   );
 }

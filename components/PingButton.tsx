@@ -4,9 +4,6 @@ import { FC } from 'react'
 import styles from '../styles/PingButton.module.css'
 import React, { useCallback } from 'react';
 
-// const PROGRAM_ID = new Web3.PublicKey("ChT1B39WKLS8qUrkLvFDXMhEJ4F1XZzwUNHUt4AU9aVa")
-// const PROGRAM_DATA_PUBLIC_KEY = new Web3.PublicKey("Ah9K7dQ8EHaZqcAsgBW8w37yN2eAy3koFmUn4x3CJtod")
-
 import * as mpl from "@metaplex-foundation/mpl-token-metadata";
 import * as anchor from '@project-serum/anchor';
 
@@ -21,7 +18,6 @@ export const PingButton: FC = () => {
 			alert("Please connect your wallet first lol");
 			return
 		}
-		alert(mpl.PROGRAM_ID);
 
 		const {
 				context: { slot: minContextSlot },
@@ -30,7 +26,9 @@ export const PingButton: FC = () => {
 
 		const transaction = new Web3.Transaction();
 
-		const mint = new Web3.PublicKey("ANUXTcqKnKha6Cee3CgJVYkZphXX6PxDTNbiU7auUpnX");
+		// const mint = new Web3.PublicKey("ANUXTcqKnKha6Cee3CgJVYkZphXX6PxDTNbiU7auUpnX");
+		const mint = new Web3.PublicKey("2ADKYuqzwQwCKQtDb4fchL4Dxc8QZYcvrvTGGEGD6Ghh");
+		
 
 		const seed1 = Buffer.from(anchor.utils.bytes.utf8.encode("metadata"));
 
@@ -48,17 +46,17 @@ export const PingButton: FC = () => {
 		}
 
     const dataV2 = {
-			name: "EnoSuity COIN",
-			symbol: "ENO",
+			name: "YID COIN",
+			symbol: "YID",
 			uri: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/2ADKYuqzwQwCKQtDb4fchL4Dxc8QZYcvrvTGGEGD6Ghh/logo.png",
 			// we don't need that
 			sellerFeeBasisPoints: 0,
 			creators: null,
 			collection: null,
-			uses: null
+			uses: null,
 		}
 
-	let ix;
+		let ix;
     if (INITIALIZE) {
         const args : mpl.CreateMetadataAccountV3InstructionArgs =  {
 					createMetadataAccountArgsV3: {
@@ -82,24 +80,10 @@ export const PingButton: FC = () => {
 				
     }
 
-
-		// const instruction = new Web3.TransactionInstruction({
-		// 	keys: [
-		// 		{
-		// 			pubkey: PROGRAM_DATA_PUBLIC_KEY,
-		// 			isSigner: false,
-		// 			isWritable: true
-		// 		},
-		// 	],
-		// 	programId: PROGRAM_ID,
-		// });
-
 		transaction.add(ix);
 		console.log("Updating Metadata ... ");
 
-		{ minContextSlot }
-		let signature = await sendTransaction(transaction, connection, { minContextSlot });
-		
+		let signature = await sendTransaction(transaction, connection, { minContextSlot });		
 		let confirm = await connection.confirmTransaction({ blockhash, lastValidBlockHeight, signature });
 		
 		if (confirm != undefined) {
