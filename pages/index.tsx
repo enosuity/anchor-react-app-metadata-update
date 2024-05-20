@@ -22,8 +22,16 @@ const Home: NextPage = (props) => {
         <AppBar />
         <div className={styles.AppBody}>
           <PingButton />
-          <div>
-            Note: Click on button to update metadata of a token
+          <div className={styles.notesAtBottom}>
+            <b>Note:</b>
+            <ui>
+              <li>
+                Click on above button to update metadata of existing token.
+              </li>
+              <li>
+                Make sure, Wallet must be connected with <i>Mint Authority wallet</i>
+              </li>
+            </ui>
           </div>
         </div>
       </WalletContextProvider >

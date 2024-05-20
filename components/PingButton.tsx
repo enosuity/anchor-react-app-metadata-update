@@ -21,7 +21,6 @@ export const PingButton: FC = () => {
 			alert("Please connect your wallet first lol");
 			return
 		}
-		alert(publicKey);
 		alert(mpl.PROGRAM_ID);
 
 		const {
@@ -29,10 +28,7 @@ export const PingButton: FC = () => {
 				value: { blockhash, lastValidBlockHeight },
 		} = await connection.getLatestBlockhashAndContext();
 
-		console.log("blockhash ==========> ", blockhash);
-		console.log("lastValidBlockHeight ==========> ", lastValidBlockHeight);
-
-		const transaction = new Web3.Transaction()
+		const transaction = new Web3.Transaction();
 
 		const mint = new Web3.PublicKey("ANUXTcqKnKha6Cee3CgJVYkZphXX6PxDTNbiU7auUpnX");
 
@@ -52,8 +48,8 @@ export const PingButton: FC = () => {
 		}
 
     const dataV2 = {
-			name: "Eno COIN",
-			symbol: "ENO",
+			name: "EnoSuity COIN",
+			symbol: "ENNO",
 			uri: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/2ADKYuqzwQwCKQtDb4fchL4Dxc8QZYcvrvTGGEGD6Ghh/logo.png",
 			// we don't need that
 			sellerFeeBasisPoints: 0,
@@ -81,9 +77,9 @@ export const PingButton: FC = () => {
 							primarySaleHappened: true
             }
         };
-				console.log("================= 1 ===============");
+				
         ix = mpl.createUpdateMetadataAccountV2Instruction(accounts, args)
-				console.log("================= 2 ===============");
+				
     }
 
 
@@ -98,20 +94,20 @@ export const PingButton: FC = () => {
 		// 	programId: PROGRAM_ID,
 		// });
 
-		console.log("============== 4 ======== ");
 		transaction.add(ix);
 		console.log("Updating Metadata ... ");
-		// console.log("connection => ", connection);
-		// const connection = new web3.Connection("https://api.devnet.solana.com");
-		// await Web3.sendAndConfirmTransaction(connection, transaction, [publicKey]);
 
 		{ minContextSlot }
 		let signature = await sendTransaction(transaction, connection, { minContextSlot });
-		console.log("signature ====> ", signature);
-		let confirm = await connection.confirmTransaction({ blockhash, lastValidBlockHeight, signature });
-		console.log("confirm ====> ", confirm);
 		
-		console.log("Executed successfully.");
+		let confirm = await connection.confirmTransaction({ blockhash, lastValidBlockHeight, signature });
+		
+		if (confirm != undefined) {
+			let msgAlert = `Transaction has been confirmed with its signature ${signature}`; 
+			alert(msgAlert);	
+		}
+		
+		alert("Metadata updated successfully.");
 		
 	}, [publicKey, connection, sendTransaction]);
 
