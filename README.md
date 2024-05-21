@@ -12,11 +12,11 @@
 
  <ol> <li>Clone the repository:</li> </ol>
 
- <pre><code>$ git clone https://github.com/codescalper/solana-wallet-integration.git</code></pre>
+ <pre><code>$ git clone https://github.com/enosuity/anchor-react-app-metadata-update.git</code></pre>
 
  <ol start="2"> <li>Change into the project directory:</li> </ol>
 
- <pre><code>$ cd solana-wallet-integration</code></pre>
+ <pre><code>$ cd anchor-react-app-metadata-update</code></pre>
 
  <ol start="3"> <li>Install dependencies:</li> </ol>
 
@@ -36,6 +36,8 @@
 <li>@solana/wallet-adapter-react</li>
 <li>@solana/wallet-adapter-react-ui</li>
 <li>@solana/wallet-adapter-wallets</li>
+<li>@metaplex-foundation/mpl-token-metadata</li>
+<li>@project-serum/anchor</li>
 <li>next</li> <li>react</li> 
 <li>react-dom</li> </ul>
 
